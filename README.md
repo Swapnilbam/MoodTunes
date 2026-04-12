@@ -1,32 +1,36 @@
-# 🎧 MoodTunes – Mood-Based Song Recommendation System
+# 🎧 MoodTunes — Mood-Based Song Recommendation System
 
-MoodTunes is a full-stack application that recommends songs based on a user's current mood. The system uses a clean UI and a data-driven backend to deliver personalized music suggestions.
+MoodTunes is a full-stack web application that recommends songs based on your current mood.  
+Users can select a mood and instantly get curated song suggestions with direct YouTube access.
+
+---
 
 ## 🚀 Features
-- 🎯 Mood selection using interactive slider
-- 🎵 Recommends songs based on mood
-- 📊 Uses real-world dataset (Kaggle)
-- ⚡ Fast API backend (FastAPI)
-- 🖥️ Simple and clean UI (Streamlit)
-- 💾 MySQL database for storing user history (optional)
+
+- 🎭 Mood-based song recommendation (Happy, Sad, Angry, Relaxed, Stressed)
+- 🎵 Smart filtering using energy & popularity
+- 🔗 Clickable YouTube integration
+- ⚡ Fast API backend using FastAPI
+- 🎨 Clean UI built with Streamlit
+
+---
 
 ## 🧠 Tech Stack
-- Frontend: Streamlit
-- Backend: FastAPI
-- Database: MySQL
-- Language: Python
+
+- **Frontend:** Streamlit  
+- **Backend:** FastAPI  
+- **Language:** Python  
+- **Libraries:** Pandas, Requests  
+- **Dataset:** Spotify Tracks Dataset  
+
+---
 
 ## 📁 Project Structure
-mood-music-recommender/
+MoodTunes/
 │
-├── frontend/
-├── backend/
-├── data/
-├── utils/
-├── requirements.txt
+├── frontend/ # Streamlit UI
+├── backend/ # FastAPI backend
+├── data/ # Dataset
+├── requirements.txt # Dependencies
 └── README.md 
 
-## ⚙️ How to Run
-```bash
-pip install -r requirements.txt
-streamlit run frontend/app.py

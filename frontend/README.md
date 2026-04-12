@@ -1,16 +1,33 @@
-# 🎨 Frontend (Streamlit UI)
 
-This folder contains the user interface of the application built using Streamlit.
+---
 
-## 📌 Responsibilities
-- Collect user mood input (slider)
-- Send request to backend API (later)
-- Display recommended songs
-- Handle UI layout and user interaction
+# 🎨 3. FRONTEND → `frontend/README.md`
 
-## 📂 Files
-- `app.py` → Main Streamlit application
+```markdown
+# 🎨 Frontend — Streamlit
 
-## 🚀 Run Frontend
+This folder contains the user interface of MoodTunes built using Streamlit.
+
+---
+
+## 🚀 Features
+
+- Mood selection slider
+- Dynamic song recommendations
+- Clickable YouTube links
+- Modern purple UI design
+
+---
+
+## ⚙️ Functionality
+
+- Sends request to backend API
+- Displays returned songs
+- Provides interactive UI
+
+---
+
+## 🧪 Run Frontend
+
 ```bash
-streamlit run app.py
+streamlit run app.py 

@@ -1,25 +1,43 @@
 
 ---
 
-# 📁 `backend/README.md`
+# ⚙️ 2. BACKEND → `backend/README.md`
 
-```md
-# ⚙️ Backend (FastAPI)
+```markdown
+# ⚙️ Backend — FastAPI
 
-This folder contains the backend logic of the application using FastAPI.
+This folder contains the backend logic of MoodTunes built using FastAPI.
 
-## 📌 Responsibilities
-- Handle API requests
-- Process mood input
-- Recommend songs using dataset
-- Connect with database (MySQL)
+---
 
-## 📂 Files
-- `main.py` → FastAPI entry point
-- `recommender.py` → mood → song logic
-- `database.py` → database connection
-- `models.py` → database models (optional)
+## 🚀 Functionality
 
-## 🚀 Run Backend
+- Provides API endpoint for song recommendations
+- Filters songs based on:
+  - Energy
+  - Popularity
+- Maps songs to moods
+
+---
+
+## 📌 API Endpoint
+
+### GET /recommend/{mood}
+
+Example: /recommend/Happy 
+
+
+---
+
+## 📊 Logic
+
+- Energy → Mood mapping
+- Top 50 songs selected by popularity
+- Random 10 songs returned
+
+---
+
+## 🧪 Run Backend
+
 ```bash
 uvicorn main:app --reload

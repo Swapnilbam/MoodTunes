@@ -1,24 +1,33 @@
 
 ---
 
-# 📁 `data/README.md`
+# 📊 4. DATA → `data/README.md`
 
-```md
-# 📊 Data (Dataset)
+```markdown
+# 📊 Dataset
 
-This folder stores the dataset used for song recommendations.
+This folder contains the dataset used for song recommendations.
 
-## 📌 Contents
-- `songs.csv` → Dataset containing song details
+---
 
-## 📊 Expected Columns
-- song_name
-- artist
-- mood (or features to derive mood)
+## 📌 Dataset Info
 
-## 🧠 Notes
-- Dataset will be sourced from Kaggle
-- Preprocessing may be required if mood labels are missing
+- Source: Spotify Tracks Dataset (Kaggle)
+- Contains:
+  - Track Name
+  - Artist
+  - Energy
+  - Popularity
 
-## ⚠️ Important
-Do not upload very large datasets directly to GitHub.
+---
+
+## 🧠 Usage
+
+- Energy → Mood mapping
+- Popularity → Ranking songs
+
+---
+
+## 📁 Files
+
+- `spotify_tracks_data.csv`
