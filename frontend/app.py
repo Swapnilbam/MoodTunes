@@ -3,6 +3,7 @@ import requests
 
 st.set_page_config(page_title="MoodTunes", page_icon="🎧", layout="wide")
 
+
 st.markdown("""
 <style>
 body {
@@ -15,13 +16,11 @@ body {
     padding-top: 2rem;
 }
 
-/* Title */
 h1 {
     text-align: center;
     font-size: 42px;
 }
 
-/* Song Card */
 .song-card {
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(12px);
@@ -30,12 +29,10 @@ h1 {
     border: 1px solid rgba(255,255,255,0.08);
 }
 
-/* Hover feel */
 .song-card:hover {
     background: linear-gradient(135deg, #7F00FF, #E100FF);
 }
 
-/* Button */
 .stButton > button {
     background: linear-gradient(90deg, #7F00FF, #E100FF);
     color: white;
@@ -47,10 +44,12 @@ h1 {
 </style>
 """, unsafe_allow_html=True)
 
+
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
     st.markdown("<h1>🎧 MoodTunes</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center;'>Find Music that matches your mood</p>", unsafe_allow_html=True)
+
 
 emoji_map = {
     "Happy": "😄",
@@ -59,6 +58,7 @@ emoji_map = {
     "Relaxed": "😌",
     "Stressed": "😩"
 }
+
 
 col1, col2, col3 = st.columns([1,2,1])
 with col2:
@@ -75,6 +75,7 @@ with col2:
 
     btn = st.button("Get Recommendations 🎶", use_container_width=True)
 
+
 if btn:
     try:
         response = requests.get(f"http://127.0.0.1:8000/recommend/{mood}")
@@ -83,7 +84,6 @@ if btn:
         if len(data["songs"]) == 0:
             st.warning("No songs found for this mood 😔")
         else:
-            
             st.markdown("""
             <div style="
                 background: linear-gradient(135deg, #7F00FF, #E100FF);
@@ -97,25 +97,23 @@ if btn:
             </div>
             """, unsafe_allow_html=True)
 
-            
             for i, song in enumerate(data["songs"], start=1):
 
                 search_query = f"{song['Track_name']} {song['Artist']}".replace(" ", "%20")
                 youtube_url = f"https://www.youtube.com/results?search_query={search_query}"
 
-                with st.container():
-                    col1, col2 = st.columns([8,1])
+                col1, col2 = st.columns([8,1])
 
-                    with col1:
-                        st.markdown(f"""
-                        <div class="song-card">
-                            <b>{i}. {song['Track_name']}</b><br>
-                            <span style="color:#bbb;">{song['Artist']}</span>
-                        </div>
-                        """, unsafe_allow_html=True)
+                with col1:
+                    st.markdown(f"""
+                    <div class="song-card">
+                        <b>{i}. {song['Track_name']}</b><br>
+                        <span style="color:#bbb;">{song['Artist']}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
 
-                    with col2:
-                        st.link_button("▶️", youtube_url)
+                with col2:
+                    st.link_button("▶️", youtube_url)
 
     except:
         st.error("⚠️ Backend not running or connection failed")
