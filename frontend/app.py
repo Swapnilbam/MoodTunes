@@ -78,44 +78,58 @@ with col2:
 
 if btn:
     try:
-        response = requests.get(f"https://moodtunes-iyan.onrender.com/recommend/{mood}")
+        with st.spinner("Waking up server... please wait ⏳"):
+            response = requests.get(
+                f"https://moodtunes-iyan.onrender.com/recommend/{mood}",
+                timeout=40
+            )
 
-        if len(data["songs"]) == 0:
-            st.warning("No songs found for this mood 😔")
+        
+        if response.status_code != 200:
+            st.error("⚠️ Backend error. Please try again.")
         else:
-            st.markdown("""
-            <div style="
-                background: linear-gradient(135deg, #7F00FF, #E100FF);
-                padding: 20px;
-                border-radius: 16px;
-                text-align: center;
-                margin-bottom: 25px;
-                color:white;
-            ">
-                <h2>🎵 Your Mood Playlist</h2>
-            </div>
-            """, unsafe_allow_html=True)
+            data = response.json()
 
-            for i, song in enumerate(data["songs"], start=1):
+            if len(data["songs"]) == 0:
+                st.warning("No songs found for this mood 😔")
+            else:
+                st.markdown("""
+                <div style="
+                    background: linear-gradient(135deg, #7F00FF, #E100FF);
+                    padding: 20px;
+                    border-radius: 16px;
+                    text-align: center;
+                    margin-bottom: 25px;
+                    color:white;
+                ">
+                    <h2>🎵 Your Mood Playlist</h2>
+                </div>
+                """, unsafe_allow_html=True)
 
-                search_query = f"{song['Track_name']} {song['Artist']}".replace(" ", "%20")
-                youtube_url = f"https://www.youtube.com/results?search_query={search_query}"
+                for i, song in enumerate(data["songs"], start=1):
 
-                col1, col2 = st.columns([8,1])
+                    search_query = f"{song['Track_name']} {song['Artist']}".replace(" ", "%20")
+                    youtube_url = f"https://www.youtube.com/results?search_query={search_query}"
 
-                with col1:
-                    st.markdown(f"""
-                    <div class="song-card">
-                        <b>{i}. {song['Track_name']}</b><br>
-                        <span style="color:#bbb;">{song['Artist']}</span>
-                    </div>
-                    """, unsafe_allow_html=True)
+                    col1, col2 = st.columns([8,1])
 
-                with col2:
-                    st.link_button("▶️", youtube_url)
+                    with col1:
+                        st.markdown(f"""
+                        <div class="song-card">
+                            <b>{i}. {song['Track_name']}</b><br>
+                            <span style="color:#bbb;">{song['Artist']}</span>
+                        </div>
+                        """, unsafe_allow_html=True)
 
-    except:
-        st.error("⚠️ Backend not running or connection failed")
+                    with col2:
+                        st.link_button("▶️", youtube_url)
+
+    except requests.exceptions.Timeout:
+        st.error("⏳ Server is waking up, please try again in a few seconds.")
+    except requests.exceptions.ConnectionError:
+        st.error("🔌 Cannot connect to backend.")
+    except Exception as e:
+        st.error(f"⚠️ Unexpected error: {e}")
 
 
 st.markdown("""
