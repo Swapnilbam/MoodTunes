@@ -78,8 +78,7 @@ with col2:
 
 if btn:
     try:
-        response = requests.get(f"http://127.0.0.1:8000/recommend/{mood}")
-        data = response.json()
+        response = requests.get(f"https://moodtunes-iyan.onrender.com/recommend/{mood}")
 
         if len(data["songs"]) == 0:
             st.warning("No songs found for this mood 😔")
